@@ -28,7 +28,7 @@ cd PeopleFLow
 2. Configurar variables de entorno
 ```bash
 cp .env.example .env
-# Editar .env con las credenciales
+# Editar .env con las credenciales. por defecto esta seteado a usar docker
 ```
 
 3. Levantar los servicios
@@ -63,6 +63,8 @@ pip install -r requirements.txt
 3. Configurar variables de entorno (MONGO_URL debe apuntar a localhost:27017)
 ```bash
 cp .env.example .env
+# Por defecto el ejemplo usa docker. Cambiar la configuracion siguiendo
+# las instrucciones del .env.example
 ```
 
 4. Iniciar el servidor con uvicorn
@@ -70,7 +72,7 @@ cp .env.example .env
 uvicorn src.main:app --reload
 ```
 
-> Nota: esto solamente fue probado en entorno LINUX. Se desconoce su funcionamiento en Windows
+> Nota: Se tiene en cuenta que se usa docker por defecto. Para que este set de comendos funcione el contendor docker debe estar corriendo (ya que es el que contiene mongo). La alternativa es instalar Mongo localmente
 
 ## Variables de entorno
 
