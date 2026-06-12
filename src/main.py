@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from src.database import connect_db, close_db
 from src.scheduler import start_scheduler, stop_scheduler
 from src.routes.employees import router as employees_router
+from src.routes.reports import router as reports_router
 
 
 @asynccontextmanager
@@ -38,3 +39,4 @@ app = FastAPI(
 
 # Registra todas las rutas de empleados bajo el prefijo /employees
 app.include_router(employees_router, prefix="/employees", tags=["Empleados"])
+app.include_router(reports_router, prefix="/reports", tags=["Reportes"])
