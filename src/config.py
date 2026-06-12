@@ -1,3 +1,4 @@
+from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
 
@@ -15,17 +16,18 @@ class Settings(BaseSettings):
     - app_port: puerto en el que corre la app (por defecto 8000).
     """
 
-    mongo_url: str
-    mongo_db_name: str = "peopleflow"
-    app_port: int = 8000
-
-    class Config:
-        env_file = ".env"
-        case_sensitive = False
+    model_config = ConfigDict(
+        env_file=".env",
+        case_sensitive=False,
         # Ignora variables del .env que no están definidas como campos
         # (ej: MONGO_USER y MONGO_PASSWORD, que usa Docker Compose para
         # inicializar MongoDB pero la app no necesita directamente).
-        extra = "ignore"
+        extra="ignore",
+    )
+
+    mongo_url: str
+    mongo_db_name: str = "peopleflow"
+    app_port: int = 8000
 
 
 # Instancia única que se importa en el resto de la app

@@ -39,7 +39,7 @@ docker compose up --build
 4. Abrir la documentación interactiva en Swagger
 (http://localhost:8000/docs)
 
-## Finalizacion del entorno con Docer
+## Finalización del entorno con Docker
 
 ```bash
 docker compose down -v
@@ -102,6 +102,7 @@ Se recomienda este medio para la revisión de la API.
 | `GET` | `/employees/{id}` | Obtener empleado por ID | 200 OK |
 | `PUT` | `/employees/{id}` | Actualizar datos de empleado | 200 OK |
 | `DELETE` | `/employees/{id}` | Eliminar empleado | 204 No Content |
+| `GET` | `/reports/salary` | Historial de reportes salariales | 200 OK |
 
 ### Filtros y paginación (GET /employees/)
 
@@ -134,4 +135,19 @@ Cada **lunes a las 08:00** se ejecuta automáticamente un reporte que:
 
 ```
 [SalaryReport] 2026-06-15T08:00:00 — Promedio: $72,500.00 | Empleados: 42
+```
+
+## Tests
+
+Los tests usan `pytest` con `mongomock` (MongoDB en memoria) — no requieren ninguna conexión real a la base de datos.
+
+1. Activar el entorno virtual e instalar dependencias (si no se hizo antes)
+```bash
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+2. Correr los tests
+```bash
+pytest tests/ -v
 ```
